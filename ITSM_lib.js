@@ -3,7 +3,7 @@ function jiraTicket(sap_data, severity){
 
     // declare the jira ticket schema
     const jiraSchema = require("./jiraSchema.json"); 
-   // const mapper = require("./jiraMapper.json");
+   
 
     var summary = sap_data.EVENT_CLASS + " - " + sap_data.RISK_DESCRIPTION;
     
@@ -70,45 +70,7 @@ function elasticTicket(sap_data){
     return elasticSchema
 }
 
-// Purpose : Create Jira Ticket - A task
-function jira_postRequest(requestData, jiraUrl, auth){
 
-    const axios = require('axios');
-
-    const jira_headers = {
-        'Content-Type': 'application/json'
-    };
-
-    const response = axios.post(jiraUrl,requestData,
-        {
-          headers: jira_headers,
-          auth: {
-            username: auth.username,
-            password: auth.password
-          }
-        }
-      ).then(function(response){
-          console.log('Response:', response.data);
-      })
-      /*.catch(function(error){
-          //console.error('Error:', error)
-         if (error.response && error.response.status === 401){
-
-            console.log("this is 401 error");
-            //res.status(401).send('401');
-            
-            
-          }
-         if (error.response.status === 403){
-            console.log("error 403 Captcha failed");
-            }
-        if(error.response.status === 500){
-                console.log("500 error");
-            }
-        })*/
-    
-    //res.status(error.response.status).send('error')
-}
 
 // Purpose : Send an entry to Elasticsearch DB
 function elastic_postrequest(requestData){
@@ -153,33 +115,7 @@ function axiosPost(requestData){
     });
 }
 
-function axiosGet(issueId){
-    var options = {
-        method: 'GET',
-        url: 'http://example.com:8080/rest/api/latest/issue/{issueIdOrKey}', 
-        auth: { username: username, password: password },
-        headers: {
-           'Accept': 'application/json'
-        }
-     };
-     
-     request(options, function (error, response, body) {
-        if (error) throw new Error(error);
-        console.log(
-           'Response: ' + response.statusCode + ' ' + response.statusMessage
-        );
-        console.log(error); //this would log all the info (in json) of the issue 
-        // you can use a online json parser to look at this information in a formatted way
-     
-     });
-}
+module.exports = { jiraTicket, elastic_postrequest, elasticTicket, severityMapper}
 
-module.exports = { jiraTicket, jira_postRequest, elastic_postrequest, elasticTicket, severityMapper}
 
-/*function unauthorized(req,res)
-{
-    response.status(401);
-    console.log("error here");
-    response.json({code:401,message: 'unauthorized'});
-}*/
 

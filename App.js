@@ -15,13 +15,10 @@ app.use("/documentations", swaggerDoc.setup(swaggerDocumentation));
 
 // configure the welcome page
 app.get('/', function(req, res){
-    //res.status(200);
+    
     res.send('JIRA SERVER HOMEPAGE');
 });
-function ErrorResponse(status, message) {
-  this.status = status;
-  this.message = message;
-}
+
 app.post('/Ticket/API/Create_Ticket', jsonParser, function(req, res) {
   var sapInputdata = req.body;
   const credentials = require("./creds.json");
@@ -41,10 +38,9 @@ app.post('/Ticket/API/Create_Ticket', jsonParser, function(req, res) {
     // call the jira_postRequest function and handle errors
     jira_postRequest(jira_ticket, jiraMainurl, auth)
       .then(status => {
-        if (status === 200 /*|| status ===201*/) {
+        if (status === 200 || status ===201) {
           console.log(`Jira ticket created successfully`);
         } else {
-          //console.log(`Jira ticket creation failed with status ${status}`);
           errors.push(status); // add the error status code to the errors array
         }
         if (i === arrayLength) {
@@ -55,16 +51,10 @@ app.post('/Ticket/API/Create_Ticket', jsonParser, function(req, res) {
           }
         }
       })
-      .catch(error => {
-        console.log(`Error in posting Jira request: ${error}`);
-        errors.push(500); // add a generic server error status code to the errors array
-        if (i === arrayLength) {
-          res.status(errors[0]).send(errors); // return the first error status code to the client
-        }
-        return 
-      });
+     
   }
 });
+// function definition of jira_postRequest
 function jira_postRequest(jira_ticket, jira_url, auth) {
   return axios.post(jira_url, jira_ticket, { auth: auth })
     .then(response => {
