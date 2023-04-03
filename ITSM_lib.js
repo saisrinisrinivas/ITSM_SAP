@@ -87,10 +87,10 @@ function jira_postRequest(requestData, jiraUrl, auth){
             password: auth.password
           }
         }
-      )/*.then(function(response){
+      ).then(function(response){
           console.log('Response:', response.data);
       })
-      .catch(function(error){
+      /*.catch(function(error){
           //console.error('Error:', error)
          if (error.response && error.response.status === 401){
 
@@ -105,7 +105,7 @@ function jira_postRequest(requestData, jiraUrl, auth){
         if(error.response.status === 500){
                 console.log("500 error");
             }
-        });*/
+        })*/
     
     //res.status(error.response.status).send('error')
 }
@@ -141,7 +141,7 @@ function elastic_postrequest(requestData){
 }
 
 // Purpose : To POST using axios module.
-/*function axiosPost(requestData){
+function axiosPost(requestData){
     const axios = require('axios');
     // A module to use axios post request and to catch errors also.
 
@@ -151,9 +151,9 @@ function elastic_postrequest(requestData){
     .catch(function(error){
         console.error('Error:', error);
     });
-}*/
+}
 
-/*function axiosGet(issueId){
+function axiosGet(issueId){
     var options = {
         method: 'GET',
         url: 'http://example.com:8080/rest/api/latest/issue/{issueIdOrKey}', 
@@ -172,7 +172,7 @@ function elastic_postrequest(requestData){
         // you can use a online json parser to look at this information in a formatted way
      
      });
-}*/
+}
 
 module.exports = { jiraTicket, jira_postRequest, elastic_postrequest, elasticTicket, severityMapper}
 
