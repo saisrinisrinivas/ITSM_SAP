@@ -47,15 +47,6 @@ const swaggerDocumentation = {
 
     },
 
-    /*servers : [
-
-      {
-            url : "http://20.219.158.93:9000",
-            description: "this is jira endpoint"
-        },
-
-    ], */
-
     tags: [
 
         {
@@ -93,7 +84,7 @@ const swaggerDocumentation = {
                                         example : "",
     
                                         },
-                                    Req_No : {
+                                    REQ_NO : {
 
                                         type: "integer",
                                         description: "This is request number",
@@ -372,6 +363,7 @@ const swaggerDocumentation = {
                 },
             },
         },
+        
     },
 
 };

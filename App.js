@@ -35,6 +35,7 @@ app.post('/Ticket/API/Create_Ticket', jsonParser, function(req, res) {
     console.log(`Updated Jira Severity is : ${sap_severity}`);
     const jira_ticket = libraries.jiraTicket(currentSap, sap_severity);
     console.log(jira_ticket);
+     
     // call the jira_postRequest function and handle errors
     jira_postRequest(jira_ticket, jiraMainurl, auth)
       .then(status => {
@@ -51,7 +52,13 @@ app.post('/Ticket/API/Create_Ticket', jsonParser, function(req, res) {
           }
         }
       })
-     
+    // create the elastic schema entry
+    const elastic_ticket = libraries.elasticTicket(currentSap);
+    //console.log(elastic_ticket);
+    
+    // post the schema to Elastic & Kibana
+    libraries.elastic_postrequest(elastic_ticket);
+    
   }
 });
 // function definition of jira_postRequest

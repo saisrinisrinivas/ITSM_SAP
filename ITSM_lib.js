@@ -82,7 +82,9 @@ function elastic_postrequest(requestData){
     const elastic_url = creds.elastic_url;
     const elastic_index = creds.elastic_index;
     const elastic_type = creds.elastic_type;
-    const elastic_tag = requestData.REQ_NO;
+    
+    const elastic_tag = requestData;
+    console.log(elastic_tag);
 
     const mainUrl = elastic_url + elastic_index + elastic_type + elastic_tag;
 
@@ -115,7 +117,6 @@ function axiosPost(requestData){
     });
 }
 
-module.exports = { jiraTicket, elastic_postrequest, elasticTicket, severityMapper}
-
+module.exports = {jiraTicket,elastic_postrequest, elasticTicket, severityMapper}
 
 

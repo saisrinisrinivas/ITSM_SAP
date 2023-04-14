@@ -3,10 +3,9 @@
     "jira_issueEndpoint": "/rest/api/2/issue/",
 
 
-    "elastic_url": "http://testelastic.strangled.net",
+    "elastic_url": "http://elastictest.strangled.net",
     "elastic_index": "/sap_sample_data",
     "elastic_type": "/_doc/",
 
-
-    "kibana_url": "testkibana.strangled.net"
+    "kibana-url": "http://kibanatest.stangled.net"
 }
